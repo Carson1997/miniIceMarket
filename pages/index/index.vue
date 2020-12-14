@@ -23,7 +23,7 @@
 		<goodsList :goods_list="goods_list">
 			<view class="hot_goods">
 				<view class="tit">
-					··推荐2商品··
+					··推荐商品324··
 				</view>
 			</view>
 		</goodsList>
