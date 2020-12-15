@@ -34,12 +34,22 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/goods/goods",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "小冰商城",
 		"navigationBarBackgroundColor": "#ff5500",
 		"backgroundColor": "#F8F8F8"
+		// "navigationStyle":"custom"
 	},
 	"tabBar": {
 		"color": "#707070",

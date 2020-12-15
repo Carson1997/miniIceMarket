@@ -4,22 +4,17 @@
 		onLaunch: function() {
 			uni.getSystemInfo({
 				success: function(e) {
-					Vue.prototype.statusBar = e.statusBarHeight
-					// #ifndef MP
-					if (e.platform == 'android') {
-						Vue.prototype.customBar = e.statusBarHeight + 50
-					} else {
-						Vue.prototype.customBar = e.statusBarHeight + 45
-					}
+					// #ifdef H5
+					Vue.prototype.statusBarH = e.statusBarHeight
 					// #endif
 
 					// #ifdef MP-WEIXIN
-					let custom = wx.getMenuButtonBoundingClientRect();
-					Vue.prototype.customBar = custom.bottom + custom.top - e.statusBarHeight
-					// #endif
-
-					// #ifdef MP-ALIPAY
-					Vue.prototype.customBar = e.statusBarHeight + e.titleBarHeight
+					let custom = wx.getMenuButtonBoundingClientRect()
+					console.log(e)
+					console.log(custom)
+					Vue.prototype.statusBarH = custom.top
+					Vue.prototype.customBarH = custom.height + 4;
+					Vue.prototype.customBarW = custom.left;
 					// #endif
 				}
 			})

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		商品细节
+		商品列表
 	</view>
 </template>
 
@@ -10,9 +10,6 @@
 			return {
 				
 			}
-		},
-		onLoad(option) {
-			console.log(option.goods_id)
 		},
 		methods: {
 			

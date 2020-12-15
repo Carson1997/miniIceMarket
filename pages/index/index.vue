@@ -1,7 +1,7 @@
 <template>
 	<view class="pages home">
 		<!-- 搜索 -->
-		<search @confirm="search" @input="input" @cancel="cancel" cancelButton="none"></search>
+		<search @confirm="search" @input="input"  cancelButton="none"></search>
 
 		<!-- 轮播图 -->
 		<swiper indicator-dots circular>
@@ -12,7 +12,7 @@
 
 		<!-- 导航 -->
 		<view class="nav">
-			<view v-for="item in nav" class="nav_item" :key="item.title">
+			<view v-for="item in nav" class="nav_item" :key="item.title" @click="navItemClick()">
 				<!-- <view class="iconfont" :class="item.icon"></view> -->
 				<!-- <text>{{item.title}}</text> -->
 				<image :src="item.img"></image>
@@ -23,7 +23,7 @@
 		<goodsList :goods_list="goods_list">
 			<view class="hot_goods">
 				<view class="tit">
-					··推荐商品324··
+					··推荐商品··
 				</view>
 			</view>
 		</goodsList>
@@ -53,17 +53,22 @@
 		methods: {
 			getSwipers() {
 				// #ifdef H5
-				this.$Request({
-					url: this.$Interface.getlunbo,
-				}).then(res => {
-					this.$CheckStatus(res, () => {
-						let data = res.data;
-						this.swipers = data.swipers;
-						this.nav = data.nav;
-						this.goods_list = data.goods_list;
-						console.log(data)
-					})
-				})
+				// this.$Request({
+				// 	url: this.$Interface.getlunbo,
+				// }).then(res => {
+				// 	this.$CheckStatus(res, () => {
+				// 		let data = res.data;
+				// 		this.swipers = data.swipers;
+				// 		this.nav = data.nav;
+				// 		this.goods_list = data.goods_list;
+				// 		console.log(data)
+				// 	})
+				// })
+				let res = require('@/static/json/home.json');
+				let data = res.data;
+				this.swipers = data.swipers;
+				this.nav = data.nav;
+				this.goods_list = data.goods_list;
 				// #endif
 
 				// #ifdef MP-WEIXIN
@@ -75,9 +80,9 @@
 				console.log(data)
 				// #endif
 			},
-			goGoodsDetail(id) {
+			goGoodsDetail(goods_id) {
 				uni.navigateTo({
-					url: '/pages/goodsDetail/goodsDetail?id?' + id
+					url: '/pages/goodsDetail/goodsDetail?goods_id=' + goods_id
 				})
 			},
 			search(res) {
@@ -86,8 +91,11 @@
 			input(res) {
 				this.searchVal = res.value
 			},
-			cancel(res) {
-				console.log(res)
+			navItemClick(){
+				uni.navigateTo({
+					url:'/pages/goods/goods',
+				})
+				
 			}
 		},
 	}
