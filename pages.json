@@ -29,7 +29,7 @@
 		}, {
 			"path": "pages/goodsDetail/goodsDetail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "商品详情",
 				"enablePullDownRefresh": true
 			}
 
@@ -38,8 +38,17 @@
             "path" : "pages/goods/goods",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "商品列表",
                 "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/contact/contact",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于我们",
+                "enablePullDownRefresh": false
             }
             
         }

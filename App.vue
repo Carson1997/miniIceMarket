@@ -1,24 +1,7 @@
 <script>
 	import Vue from 'vue'
 	export default {
-		onLaunch: function() {
-			uni.getSystemInfo({
-				success: function(e) {
-					// #ifdef H5
-					Vue.prototype.statusBarH = e.statusBarHeight
-					// #endif
-
-					// #ifdef MP-WEIXIN
-					let custom = wx.getMenuButtonBoundingClientRect()
-					console.log(e)
-					console.log(custom)
-					Vue.prototype.statusBarH = custom.top
-					Vue.prototype.customBarH = custom.height + 4;
-					Vue.prototype.customBarW = custom.left;
-					// #endif
-				}
-			})
-		},
+		onLaunch: function() {},
 		onShow: function() {},
 		onHide: function() {}
 	}

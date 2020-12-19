@@ -1,0 +1,22 @@
+{
+	"data": {
+		"swipers": [{
+				"img": "/static/img/contact/swiper1.jpg",
+				"id": 1
+			},
+			{
+				"img": "/static/img/contact/swiper2.jpg",
+				"id": 2
+			},
+			{
+				"img": "/static/img/contact/swiper3.jpg",
+				"id": 3
+			}
+		]
+		"company_profile":""
+	},
+	"status": "0",
+	"info": "",
+	"url": "",
+	"urlType": ""
+}

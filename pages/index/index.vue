@@ -1,5 +1,5 @@
 <template>
-	<view class="pages home">
+	<view class="pages">
 		<!-- 搜索 -->
 		<search @confirm="search" @input="input"  cancelButton="none"></search>
 
@@ -12,10 +12,10 @@
 
 		<!-- 导航 -->
 		<view class="nav">
-			<view v-for="item in nav" class="nav_item" :key="item.title" @click="navItemClick()">
-				<!-- <view class="iconfont" :class="item.icon"></view> -->
-				<!-- <text>{{item.title}}</text> -->
-				<image :src="item.img"></image>
+			<view v-for="item in nav" class="nav_item" :key="item.title" @click="navItemClick(item.url)">
+				<view class="iconfont" :class="item.icon"></view>
+				<text>{{item.title}}</text>
+				<!-- <image :src="item.img"></image> -->
 			</view>
 		</view>
 
@@ -48,27 +48,30 @@
 			goodsList,
 		},
 		onLoad() {
-			this.getSwipers()
+			this.getHomeData()
+		},
+		onPullDownRefresh() {
+			this.goods_list = [];
+			setTimeout(() => {
+				this.getHomeData(() => {
+					uni.stopPullDownRefresh()
+				})
+			}, 1000)
 		},
 		methods: {
-			getSwipers() {
+		async getHomeData(callBack) {
 				// #ifdef H5
-				// this.$Request({
-				// 	url: this.$Interface.getlunbo,
-				// }).then(res => {
-				// 	this.$CheckStatus(res, () => {
-				// 		let data = res.data;
-				// 		this.swipers = data.swipers;
-				// 		this.nav = data.nav;
-				// 		this.goods_list = data.goods_list;
-				// 		console.log(data)
-				// 	})
-				// })
-				let res = require('@/static/json/home.json');
-				let data = res.data;
-				this.swipers = data.swipers;
-				this.nav = data.nav;
-				this.goods_list = data.goods_list;
+				this.$Request({
+					url: this.$Interface.home,
+				}).then(res => {
+					this.$CheckStatus(res, () => {
+						let data = res.data;
+						this.swipers = data.swipers;
+						this.nav = data.nav;
+						this.goods_list = data.goods_list;
+						callBack && callBack()
+					})
+				})
 				// #endif
 
 				// #ifdef MP-WEIXIN
@@ -77,8 +80,9 @@
 				this.swipers = data.swipers;
 				this.nav = data.nav;
 				this.goods_list = data.goods_list;
-				console.log(data)
+				callBack && callBack()
 				// #endif
+				
 			},
 			goGoodsDetail(goods_id) {
 				uni.navigateTo({
@@ -91,9 +95,9 @@
 			input(res) {
 				this.searchVal = res.value
 			},
-			navItemClick(){
+			navItemClick(url){
 				uni.navigateTo({
-					url:'/pages/goods/goods',
+					url:url,
 				})
 				
 			}
@@ -103,11 +107,10 @@
 
 <style lang="scss" scoped>
 	/* 1rpx = 0.5px */
-	.home {
 		swiper {
 			width: 750rpx;
 			height: 380rpx;
-
+		
 			image {
 				height: 100%;
 				width: 100%;
@@ -155,5 +158,4 @@
 				font-weight: bold;
 			}
 		}
-	}
 </style>

@@ -10,8 +10,11 @@ head = "http://www.cjc.cool";
 // #endif
 
 let api = head + '/miniMarketData/';
+api = '/static/json/'
 export let Interface = {
-	getlunbo: api + 'index/home/home',
+	// home: api + 'index/home/home',
+	home: api+ 'home.json',
+	goods:api+'goods.json',
 }
 
 export function Request(options) {

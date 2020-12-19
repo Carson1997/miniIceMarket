@@ -1,26 +1,28 @@
 {
   "data":{
 "swipers":[
-   {"img":"https://api-hmugo-web.itheima.net/pyg/banner1.png","open_type":"navigate","goods_id":1},
+   {"img":"//api-hmugo-web.itheima.net/pyg/banner1.png","open_type":"navigate","goods_id":1},
    {"img":"//img11.360buyimg.com/cms/jfs/t1/119341/34/10866/298336/5ef302afEee15465b/a5bc880b53c068b3.jpg","goods_id":2},
-   {"img":"https://api-hmugo-web.itheima.net/pyg/banner3.png","open_type":"navigate","goods_id":3}
+   {"img":"//api-hmugo-web.itheima.net/pyg/banner3.png","open_type":"navigate","goods_id":3}
 ],
     "nav":[
       {
-        "title": "分类",
-        "img": "https://api-hmugo-web.itheima.net/pyg/icon_index_nav_4@2x.png"
+        "title": "小冰超市",
+		"icon":"icon-ziyuan",
+		"url":"/pages/goods/goods"
       },
       {
-        "title": "秒杀拍",
-        "img": "https://api-hmugo-web.itheima.net/pyg/icon_index_nav_3@2x.png"
+        "title": "商品详图",
+		"icon":"icon-tupian"
       },
       {
-        "title": "超市购",
-        "img": "https://api-hmugo-web.itheima.net/pyg/icon_index_nav_2@2x.png"
+        "title": "视频介绍",
+		"icon":"icon-shipin"
       },
       {
-        "title": "母婴品",
-        "img": "https://api-hmugo-web.itheima.net/pyg/icon_index_nav_1@2x.png"
+       "title": "关于我们",
+       "icon":"icon-guanyuwomen",
+	    "url":"/pages/contact/contact"
       }
     ],
     "goods_list":[

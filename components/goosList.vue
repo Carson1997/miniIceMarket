@@ -58,7 +58,6 @@
 				padding: 0 10rpx;
 				color: red;
 				font-size: 36rpx;
-
 				text:nth-child(2) {
 					color: #C0C0C0;
 					font-size: 28rpx;
@@ -76,6 +75,7 @@
 				display: -webkit-box;
 				-webkit-line-clamp: 3;
 				-webkit-box-orient: vertical;
+				line-height: 40rpx;
 			}
 		}
 	}
