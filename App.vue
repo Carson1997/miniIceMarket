@@ -3,12 +3,14 @@
 	export default {
 		onLaunch: function() {},
 		onShow: function() {},
-		onHide: function() {}
+		onHide: function() {},
 	}
 </script>
 
+
 <style lang="scss">
-	@import url("@/static/font/iconfont.css");
+	@import "uview-ui/index.scss";
+	@import '@/static/font/iconfont.css';
 
 	html,
 	body,

@@ -1,7 +1,8 @@
 <template>
-	<view>
+	<view class="pages goods">
 		<goods-list :goods_list="goods_list"></goods-list>
-		<view class="isOver" v-if="flag">---没有数据了---</view>
+		<view class="isOver" v-if="flag">没有更多数据了</view>
+		<u-back-top :scroll-top="scrollTop" :customStyle="customStyle" :iconStyle="iconStyle"></u-back-top>
 	</view>
 </template>
 
@@ -13,11 +14,24 @@
 				pageIndex: 1,
 				pageNum: 0,
 				goods_list: [],
-				flag: false
+				flag: false,
+				ifLoad: false,
+				scrollTop: 0,
+				customStyle: {
+					"background-color": "#ff5500",
+					width: "60rpx",
+					height: "60rpx",
+				},
+				iconStyle: {
+					color: "white"
+				}
 			}
 		},
 		onLoad() {
 			this.getGoodsData()
+		},
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop;
 		},
 		onReachBottom() {
 			if (this.pageIndex < this.pageNum) {
@@ -89,10 +103,16 @@
 </script>
 
 <style lang="scss">
+	.iconload {
+		margin-right: 10rpx;
+	}
+
 	.isOver {
 		text-align: center;
 		font-size: 28rpx;
-		padding: 10rpx;
+		// padding: 10rpx;
+		line-height: 60rpx;
+		height: 60rpx;
 		letter-spacing: 10rpx;
 	}
 </style>

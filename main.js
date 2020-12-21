@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import {Request,Interface,CheckStatus} from '@/static/js/public/config.js'
+import uView from "uview-ui";
+Vue.use(uView);
 
 Vue.config.productionTip = false
 Vue.prototype.$Interface = Interface;

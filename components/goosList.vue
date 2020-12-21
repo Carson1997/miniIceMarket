@@ -21,9 +21,8 @@
 		props: ['goods_list'],
 		methods: {
 			goGoodsDetail(id) {
-
 				uni.navigateTo({
-					url: '/pages/goodsDetail/goodsDetail?id?' + id
+					url: '/pages/goodsDetail/goodsDetail?goods_id=' + id
 				})
 
 			}

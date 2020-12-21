@@ -12,9 +12,11 @@ head = "http://www.cjc.cool";
 let api = head + '/miniMarketData/';
 api = '/static/json/'
 export let Interface = {
-	// home: api + 'index/home/home',
 	home: api+ 'home.json',
 	goods:api+'goods.json',
+	contact:api+'contact.json',
+	category:api+'category.json',
+	goodsDetail:api+'goodsDetail.json',
 }
 
 export function Request(options) {
