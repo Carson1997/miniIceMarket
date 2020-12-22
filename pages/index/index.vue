@@ -1,6 +1,8 @@
 <template>
 	<view class="pages">
 		<!-- <button open-type="getUserInfo" @getuserinfo="getUserInfo"  id="bt">获取用户信息</button> -->
+		{{this.$store.state.title}}
+<view @click="aa">123</view>
 
 		<!-- 搜索 -->
 		<search @confirm="search" @input="input" cancelButton="none"></search>
@@ -46,8 +48,8 @@
 				scrollTop: 0,
 				customStyle: {
 					"background-color": "#ff5500",
-					width:"60rpx",
-					height:"60rpx",
+					width: "60rpx",
+					height: "60rpx",
 				},
 				iconStyle: {
 					color: "white"
@@ -73,6 +75,10 @@
 			}, 1000)
 		},
 		methods: {
+			aa() {
+				this.$store.state.title ++;
+			},
+
 			getUserInfo: function(e) {
 				console.log(e.detail)
 			},

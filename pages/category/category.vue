@@ -1,5 +1,7 @@
 <template>
 	<view class="u-wrap">
+		
+		{{this.$store.state.title }}
 		<!-- 搜索 -->
 		<search @confirm="search" @input="input"  cancelButton="none"></search>
 		
