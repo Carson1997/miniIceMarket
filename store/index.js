@@ -5,16 +5,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		userInfo:{},
-		cart:[],
-		title:0
+		userInfo: {},
+		cart: [],
+		collect:[],
 	},
 	getters: {
-
+		cart_num: state => {
+			return state.cart.length;
+		}
 	},
 	mutations: {
+		addCart(state, data) {
+			state.cart = [...state.cart, data]
+		},
+		addCollcet(id){
+			state.cart = [...state.collect, id]
+		}
 	},
-	actions: {
-	},
+	actions: {},
 	modules: {}
 })

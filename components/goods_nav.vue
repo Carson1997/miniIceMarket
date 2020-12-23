@@ -5,14 +5,18 @@
 				<u-icon name="server-fill" :size="40" :color="$u.color['contentColor']"></u-icon>
 				<view class="text u-line-1">客服</view>
 			</view> -->
+			<!-- <view class="item car" @click="goPage('/pages/cart/cart')">
+				<u-badge class="car-num" :count="cart_num" type="error" :offset="[-15, -10]"></u-badge>
+				<u-icon name="shopping-cart" :size="40" :color="$u.color['contentColor']"></u-icon>
+				<view class="text u-line-1">购物车</view>
+			</view> -->
 			<view class="item" @click="goPage('/pages/index/index')">
 				<u-icon name="home" :size="40" :color="$u.color['contentColor']"></u-icon>
 				<view class="text u-line-1">主页</view>
 			</view>
-			<view class="item car" @click="goPage('/pages/cart/cart')">
-				<u-badge class="car-num" :count="cart_num" type="error" :offset="[-15, -10]"></u-badge>
-				<u-icon name="shopping-cart" :size="40" :color="$u.color['contentColor']"></u-icon>
-				<view class="text u-line-1">购物车</view>
+			<view class="item" @click="collect">
+				<u-icon name="star" :size="40" :color="$u.color['contentColor']"></u-icon>
+				<view class="text u-line-1">收藏</view>
 			</view>
 			<view class="item" @click="share">
 				<u-icon name="share" :size="40" :color="$u.color['contentColor']"></u-icon>
@@ -20,7 +24,7 @@
 			</view>
 		</view>
 		<view class="right">
-			<view class="cart btn u-line-1" @click="addCart">加入购物车</view>
+			<view class="cart btn u-line-1" @click="addCartC">加入购物车</view>
 			<view class="buy btn u-line-1" @click="buy">立即购买</view>
 		</view>
 	</view>
@@ -28,9 +32,10 @@
 
 <script>
 	export default {
+		props:['cart_num'],
 		data(){
 			return{
-				cart_num:0
+				// ifCollect:false
 			}
 		},
 		methods: {
@@ -39,15 +44,18 @@
 					url
 				})
 			},
-			addCart(){
-				this.cart_num ++;
-				uni.$emit('addCart')
+			addCartC(){
+				this.$emit('addCartClick')
 			},
 			buy(){
 				
 			},
 			share(){
+			},
+			collect(){
+				
 			}
+			
 		}
 	};
 </script>

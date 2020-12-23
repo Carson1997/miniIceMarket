@@ -3,7 +3,7 @@
 		<scroll-view class="wrap" scroll-y :style="{height: height+'px'}">
 			<!-- 轮播图 -->
 			<swiper indicator-dots circular autoplay>
-				<swiper-item v-for="item in swipers" :key="item.id" @click="seeImg(item)">
+				<swiper-item v-for="item in detail.swipers" :key="item.id" @click="seeImg(item)">
 					<image :src="item"></image>
 				</swiper-item>
 			</swiper>
@@ -11,23 +11,23 @@
 			<view class="goods_item">
 				<view class="info0">
 					<view class="price">
-						<text>￥{{price}}</text>
-						<text v-if="orPrice">￥{{orPrice}}</text>
+						<text>￥{{detail.price}}</text>
+						<text v-if="detail.orPrice">￥{{detail.orPrice}}</text>
 					</view>
-					<view class="quantity">库存：{{quantity}}件</view>
+					<view class="quantity">库存：{{detail.quantity}}件</view>
 				</view>
 
 				<view class="name">
-					{{title}}
+					{{detail.title}}
 				</view>
 
 				<view class="info1">
 					<view>运费：包邮</view>
-					<view>月销售：{{sold}}件</view>
+					<view>月销售：{{detail.sold}}件</view>
 				</view>
 
 				<view class="info2">服务：
-					<u-tag v-for="item in service" :text="item" type="error" class="u-tag" :key="item" />
+					<u-tag v-for="item in detail.service" :text="item" type="error" class="u-tag" :key="item" />
 				</view>
 			</view>
 
@@ -36,7 +36,7 @@
 					参数
 					<u-icon :name="iconShow?'arrow-down':'arrow-up'" color="#999"></u-icon>
 				</view>
-				<view v-for="item in goods_params" :key="item.label" class="p1 h1" v-if="ifSee">
+				<view v-for="item in detail.goods_params" :key="item.label" class="p1 h1" v-if="ifSee">
 					<view class="label">{{item.label}}</view>
 					<view class="value">{{item.value}}</view>
 				</view>
@@ -44,56 +44,67 @@
 
 			<view class="shop">
 				<view class="s1">
-					<image class="imgS" :src="shopImg"></image>
-					<view class="shopName">{{shopName}}</view>
+					<image class="imgS" :src="detail.shopImg"></image>
+					<view class="shopName">{{detail.shopName}}</view>
 				</view>
 				<view class="s2">
-					<view>宝贝描述:<text>{{goodsScore}}</text></view>
-					<view>卖家服务:<text>{{shopScore}}</text></view>
-					<view>物流服务:<text>{{logisticsScore}}</text></view>
+					<view>宝贝描述:<text>{{detail.goodsScore}}</text></view>
+					<view>卖家服务:<text>{{detail.shopScore}}</text></view>
+					<view>物流服务:<text>{{detail.logisticsScore}}</text></view>
 				</view>
 			</view>
 
 		</scroll-view>
 
-		<goods_nav class="goods_nav"></goods_nav>
+		<goods_nav class="goods_nav" :cart_num="cart_num" @addCartClick="addCart1"></goods_nav>
 
 	</view>
 </template>
 
 <script>
+	import {
+		mapState,
+		mapGetters,
+		mapMutations
+	} from 'vuex';
 	import goods_nav from '../../components/goods_nav.vue'
 	export default {
 		components: {
 			goods_nav
 		},
+		computed: {
+			...mapState(["cart", "collect"]),
+			...mapGetters(['cart_num'])
+		},
 		data() {
 			return {
-				height:0,
+				height: 0,
 				ifSee: false,
 				iconShow: true,
-				"goods_params": [],
-				goods_id: '',
-				swipers: [],
-				title: "",
-				price: "",
-				orPrice: "",
-				sold: "",
-				quantity: "",
-				service: "",
-				shopImg: "",
-				shopName: "",
-				goodsScore: "",
-				shopScore: "",
-				logisticsScore: "",
+				detail: {
+					"img": '',
+					"goods_params": [],
+					goods_id: '',
+					swipers: [],
+					title: "",
+					price: "",
+					orPrice: "",
+					sold: "",
+					quantity: "",
+					service: "",
+					shopImg: "",
+					shopName: "",
+					goodsScore: "",
+					shopScore: "",
+					logisticsScore: "",
+				}
 			}
 		},
 		onLoad(option) {
-			this.goods_id = option.goods_id;
-			this.initLister();
+			this.detail.goods_id = option.goods_id;
 			this.getGoodsData();
 			uni.getSystemInfo({
-				success: data=> {
+				success: data => {
 					let statusBarHeight = data.statusBarHeight;
 					let windowHeight = data.windowHeight;
 					let height = windowHeight - 54;
@@ -112,9 +123,10 @@
 			}, 1000)
 		},
 		methods: {
+			...mapMutations(['addCart', 'addcollect']),
 			async getGoodsData(callBack) {
 				let send = {
-					goods_id: this.goods_id
+					goods_id: this.detail.goods_id
 				};
 				// #ifdef H5
 				this.$Request({
@@ -124,23 +136,24 @@
 					this.$CheckStatus(res, () => {
 						let data = res.data;
 						let detail = data.goods_list.filter(item => {
-							if (item.goods_id == this.goods_id) {
+							if (item.goods_id == this.detail.goods_id) {
 								return item
 							}
 						})[0];
-						this.swipers = detail.swipers.split(';');
-						this.title = detail.title;
-						this.price = detail.price;
-						this.orPrice = detail.orPrice;
-						this.sold = detail.sold;
-						this.quantity = detail.quantity;
-						this.service = detail.service.split('，');
-						this.shopImg = detail.shopImg;
-						this.shopName = detail.shopName;
-						this.goodsScore = detail.goodsScore;
-						this.shopScore = detail.shopScore;
-						this.logisticsScore = detail.logisticsScore;
-						this.goods_params = detail.goods_params;
+						this.detail.img = detail.img;
+						this.detail.swipers = detail.swipers.split(';');
+						this.detail.title = detail.title;
+						this.detail.price = detail.price;
+						this.detail.orPrice = detail.orPrice;
+						this.detail.sold = detail.sold;
+						this.detail.quantity = detail.quantity;
+						this.detail.service = detail.service.split('，');
+						this.detail.shopImg = detail.shopImg;
+						this.detail.shopName = detail.shopName;
+						this.detail.goodsScore = detail.goodsScore;
+						this.detail.shopScore = detail.shopScore;
+						this.detail.logisticsScore = detail.logisticsScore;
+						this.detail.goods_params = detail.goods_params;
 						callBack && callBack();
 					})
 				})
@@ -150,24 +163,25 @@
 				let res = require('@/static/json/goodsDetail.json');
 				let data = res.data;
 				let detail = data.goods_list.filter(item => {
-					if (item.goods_id == this.goods_id) {
+					if (item.goods_id == this.detail.goods_id) {
 						return item
 					}
 				})[0];
-				// this.swipers = detail.swipers.split(';');
-				this.swipers = detail.img.split(';');
-				this.title = detail.title;
-				this.price = detail.price;
-				this.orPrice = detail.orPrice;
-				this.sold = detail.sold;
-				this.quantity = detail.quantity;
-				this.service = detail.service.split('，');
-				this.shopImg = detail.shopImg;
-				this.shopName = detail.shopName;
-				this.goodsScore = detail.goodsScore;
-				this.shopScore = detail.shopScore;
-				this.logisticsScore = detail.logisticsScore;
-				this.goods_params = detail.goods_params;
+				this.detail.img = detail.img;
+				this.detail.swipers = detail.img.split(';');
+				// this.detail.swipers = detail.swipers.split(';');
+				this.detail.title = detail.title;
+				this.detail.price = detail.price;
+				this.detail.orPrice = detail.orPrice;
+				this.detail.sold = detail.sold;
+				this.detail.quantity = detail.quantity;
+				this.detail.service = detail.service.split('，');
+				this.detail.shopImg = detail.shopImg;
+				this.detail.shopName = detail.shopName;
+				this.detail.goodsScore = detail.goodsScore;
+				this.detail.shopScore = detail.shopScore;
+				this.detail.logisticsScore = detail.logisticsScore;
+				this.detail.goods_params = detail.goods_params;
 				callBack && callBack();
 				// #endif
 
@@ -186,12 +200,10 @@
 				this.ifSee = !this.ifSee;
 				this.iconShow = !this.iconShow;
 			},
-			initLister() {
-				uni.$on('addCart', function(data) {
-					console.log(data)
-				})
+			addCart1() {
+				this.addCart(this.detail)
+				console.log(this.cart_num)
 			}
-
 		}
 	}
 </script>
