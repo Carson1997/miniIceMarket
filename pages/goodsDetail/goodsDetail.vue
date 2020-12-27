@@ -56,7 +56,34 @@
 
 		</scroll-view>
 
-		<goods_nav class="goods_nav" :cart_num="cart_num" @addCartClick="addCart1"></goods_nav>
+		<goods_nav class="goods_nav" :cart_num="buyNum" @addCartClick="addCart" @buyClick="buy" @collectClick="collect"></goods_nav>
+
+		<u-popup border-radius="10" v-model="downShow" length="50%" mode="bottom" closeable >
+			<view class="downDiv">
+				<view class="d1">
+					<image :src="detail.img" class="ximg"></image>
+					<view>
+						<view class="price">
+							<text>￥{{detail.price}}</text>
+							<text v-if="detail.orPrice">￥{{detail.orPrice}}</text>
+						</view>
+						<view class="quantity">库存：{{detail.quantity}}件</view>
+					</view>
+				</view>
+				<view class="name">
+					{{detail.title}}
+				</view>
+
+				<view class="info0">
+					<view>购买数量：</view>
+					<view>
+						<u-number-box v-model="buyNum" :max="detail.quantity|changeNum" size="30"></u-number-box>
+					</view>
+				</view>
+
+			</view>
+			<button type="warn" class="cur" @click="confirm">确定</button>
+		</u-popup>
 
 	</view>
 </template>
@@ -67,20 +94,38 @@
 		mapGetters,
 		mapMutations
 	} from 'vuex';
-	import goods_nav from '../../components/goods_nav.vue'
+	import goods_nav from '../../components/goodsDetail/goods_nav.vue'
 	export default {
 		components: {
 			goods_nav
 		},
 		computed: {
-			...mapState(["cart", "collect"]),
-			...mapGetters(['cart_num'])
+			...mapState(["cart", "collection", "userInfo"]),
+			userId: function() {
+				return this.userInfo.userId;
+			}
+		},
+		filters: {
+			changeNum: function(data) {
+				return parseInt(data)
+			}
 		},
 		data() {
 			return {
 				height: 0,
 				ifSee: false,
 				iconShow: true,
+				downShow: false,
+				list: [{
+					text: '点赞',
+					color: 'blue',
+					fontSize: 28,
+					subText: '感谢您的点赞'
+				}, {
+					text: '分享'
+				}, {
+					text: '评论'
+				}],
 				detail: {
 					"img": '',
 					"goods_params": [],
@@ -97,7 +142,8 @@
 					goodsScore: "",
 					shopScore: "",
 					logisticsScore: "",
-				}
+				},
+				buyNum: 0
 			}
 		},
 		onLoad(option) {
@@ -111,9 +157,6 @@
 					this.height = height;
 				}
 			})
-		},
-		onReady() {
-
 		},
 		onPullDownRefresh() {
 			setTimeout(() => {
@@ -187,7 +230,7 @@
 
 			},
 			seeImg(current) {
-				let urls = this.swipers;
+				let urls = this.detail.swipers;
 				uni.previewImage({
 					current,
 					urls,
@@ -200,9 +243,63 @@
 				this.ifSee = !this.ifSee;
 				this.iconShow = !this.iconShow;
 			},
-			addCart1() {
-				this.addCart(this.detail)
-				console.log(this.cart_num)
+			addCart() {
+				this.downShow = true;
+				this.btnType = 'addCart';
+			},
+			buy() {
+				this.downShow = true;
+				this.btnType = 'buy';
+			},
+			confirm() {
+				this.downShow = false;
+				if (this.btnType == "addCart") {
+					let goods_id = this.detail.goods_id;
+					let buyNum = this.buyNum;
+					let price = this.buyNum * this.detail.price;
+					let data;
+					if (buyNum > 0) {
+						if (this.cart.hasOwnProperty(goods_id) == false) {
+							this.cart[goods_id] = {
+								detail: this.detail,
+								buyNum: buyNum,
+								price: price,
+							};
+						} else {
+							this.cart[goods_id].buyNum = buyNum;
+						}
+						data = this.cart[goods_id];
+					}
+					if (buyNum == 0) {
+						if (this.cart.hasOwnProperty(goods_id) == true) {
+							delete this.cart[goods_id]
+						}
+						data = null;
+					}
+					
+					// #ifdef H5
+					this.addCartApi(data);
+					// #endif
+				}
+				if (this.btnType == "buy") {
+
+				}
+			},
+			addCartApi(data) {
+				let send = {
+					goods_id: this.detail.goods_id,
+					data: data,
+					userId: this.userId
+				};
+				this.$Request({
+					url: this.$Interface.addCarts,
+					data: send
+				}).then(res => {
+					this.$CheckStatus(res)
+				})
+			},
+			collect() {
+
 			}
 		}
 	}
@@ -226,56 +323,57 @@
 			width: 100%;
 			padding: 10rpx;
 			margin-bottom: 20rpx;
+		}
 
-			.info0 {
-				display: flex;
-				justify-content: space-between;
-				margin-bottom: 10rpx;
+		.info0 {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 10rpx;
+		}
 
-				.price {
-					color: red;
-					font-size: 50rpx;
+		.name {
+			font-size: 28rpx;
+			line-height: 28rpx;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			line-height: 40rpx;
+			margin-bottom: 10rpx;
+		}
 
-					text:nth-child(2) {
-						color: #C0C0C0;
-						font-size: 28rpx;
-						margin-left: 10rpx;
-						text-decoration: line-through;
-					}
-				}
+		.info1 {
+			padding-top: 0;
+			font-size: 28rpx;
+			color: $uni-text-color-grey;
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 10rpx;
+		}
 
-				.quantity {
-					align-self: flex-end;
-					color: $uni-text-color-grey;
-				}
+		.info2 {
+			.u-tag {
+				margin: 0 10rpx;
 			}
+		}
 
-			.name {
+
+		.price {
+			color: red;
+			font-size: 50rpx;
+
+			text:nth-child(2) {
+				color: #C0C0C0;
 				font-size: 28rpx;
-				line-height: 28rpx;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				display: -webkit-box;
-				-webkit-line-clamp: 3;
-				-webkit-box-orient: vertical;
-				line-height: 40rpx;
-				margin-bottom: 10rpx;
+				margin-left: 10rpx;
+				text-decoration: line-through;
 			}
+		}
 
-			.info1 {
-				padding-top: 0;
-				font-size: 28rpx;
-				color: $uni-text-color-grey;
-				display: flex;
-				justify-content: space-between;
-				margin-bottom: 10rpx;
-			}
-
-			.info2 {
-				.u-tag {
-					margin: 0 10rpx;
-				}
-			}
+		.quantity {
+			align-self: flex-end;
+			color: $uni-text-color-grey;
 		}
 
 		.params {
@@ -347,13 +445,39 @@
 			}
 		}
 
-		.wrap {}
-
 		.goods_nav {
 			position: fixed;
 			bottom: 0;
 			width: 100%;
 		}
+
+
+		.downDiv {
+			padding: 10rpx;
+
+			.d1 {
+				display: flex;
+				align-items: flex-end;
+			}
+
+			.ximg {
+				width: 200rpx;
+				height: 200rpx;
+				margin-right: 20rpx;
+			}
+		}
+
+		.cur {
+			position: fixed;
+			bottom: 10rpx;
+			left: 0;
+			right: 0;
+			width: 98%;
+			margin: auto;
+		}
+
+
+
 
 	}
 </style>

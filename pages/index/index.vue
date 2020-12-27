@@ -1,7 +1,6 @@
 <template>
 	<view class="pages">
 		<!-- <button open-type="getUserInfo" @getuserinfo="getUserInfo"  id="bt">获取用户信息</button> -->
-
 		<!-- 搜索 -->
 		<search @confirm="search" @input="input" cancelButton="none"></search>
 
@@ -35,7 +34,7 @@
 
 <script>
 	import search from '@/components/uni-search-bar/uni-search-bar.vue'
-	import goodsList from '@/components/goosList.vue';
+	import goodsList from '@/components/goodsList/goosList.vue';
 	export default {
 		data() {
 			return {

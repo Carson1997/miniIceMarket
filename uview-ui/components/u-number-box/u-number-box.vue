@@ -1,6 +1,6 @@
 <template>
 	<view class="u-numberbox">
-		<view class="u-icon-minus" @touchstart.stop.prevent="btnTouchStart('minus')" @touchend.stop.prevent="clearTimer" :class="{ 'u-icon-disabled': disabled || inputVal <= min }"
+		<view class="u-icon-minus" @touchstart.stop.prevent="btnTouchStart('minus')" @touchend.stop.prevent="clearTimer" :class="{ 'u-icon-disabled': disabled || inputVal <= min }"  @touchmove.prevent
 		    :style="{
 				background: bgColor,
 				height: inputHeight + 'rpx',

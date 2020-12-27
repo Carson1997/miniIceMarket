@@ -7,7 +7,7 @@
 		"list": [{
 			"name": "详情页面", //模式名称
 			"path": "pages/goodsDetail/goodsDetail", //启动页面，必选
-			"query": "goods_id=1" //启动参数，在页面的onLoad函数里面得到。
+			"query": "goods_id=10001" //启动参数，在页面的onLoad函数里面得到。
 		}]
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages

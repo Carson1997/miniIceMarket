@@ -7,7 +7,7 @@
 </template>
 
 <script>
-	import goodsList from '@/components/goosList.vue'
+	import goodsList from '@/components/goodsList/goosList.vue'
 	export default {
 		data() {
 			return {

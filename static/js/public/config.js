@@ -17,6 +17,7 @@ export let Interface = {
 	contact:api+'contact.json',
 	category:api+'category.json',
 	goodsDetail:api+'goodsDetail.json',
+	addCarts:api+'addCarts.json',
 }
 
 export function Request(options) {

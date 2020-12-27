@@ -1,9 +1,9 @@
 {
   "data":{
 "swipers":[
-   {"img":"//api-hmugo-web.itheima.net/pyg/banner1.png","open_type":"navigate","goods_id":1},
-   {"img":"//img11.360buyimg.com/cms/jfs/t1/119341/34/10866/298336/5ef302afEee15465b/a5bc880b53c068b3.jpg","goods_id":2},
-   {"img":"//api-hmugo-web.itheima.net/pyg/banner3.png","open_type":"navigate","goods_id":3}
+   {"img":"//api-hmugo-web.itheima.net/pyg/banner1.png","open_type":"navigate","goods_id":1001},
+   {"img":"//img11.360buyimg.com/cms/jfs/t1/119341/34/10866/298336/5ef302afEee15465b/a5bc880b53c068b3.jpg","goods_id":1002},
+   {"img":"//api-hmugo-web.itheima.net/pyg/banner3.png","open_type":"navigate","goods_id":1003}
 ],
     "nav":[
       {
@@ -27,7 +27,7 @@
     ],
     "goods_list":[
       {
-        "goods_id":1,
+        "goods_id":10001,
         "img": "//img.alicdn.com/bao/uploaded/i1/2794371653/O1CN01hukeMS1O57L6SC74K_!!2-item_pic.png",
         "title":"Swisse斯维诗vd钙娘娘钙澳洲钙+维生素D150片孕妇钙片中老年补钙",
         "sold": "1.3万",
@@ -35,7 +35,7 @@
         "quantity": "97218"
       },
       {
-        "goods_id":2,
+        "goods_id":10002,
         "img": "//img.alicdn.com/bao/uploaded/i2/2794371653/O1CN01DemHsB1O57L9zD8k0_!!2-item_pic.png",
         "title":"澳洲Swisse斯维诗奶蓟草片120粒 加班熬夜解酒护常备旰片官方正品",
         "sold": "1.3万",
@@ -43,7 +43,7 @@
         "quantity": "94759"
       },
       {
-        "goods_id":3,
+        "goods_id":10003,
         "img": "//img.alicdn.com/bao/uploaded/i1/2549841410/O1CN01iQH7gL1MHp64PVyGI_!!2549841410-0-sm.jpg",
         "title":"【直播推荐】澳洲Swisse斯维诗维生素c泡腾片天然vc高浓度60片",
         "sold": "1.2万",
@@ -51,7 +51,7 @@
         "quantity": "167876"
       },
       {
-        "goods_id":4,
+        "goods_id":10004,
         "img": "//img.alicdn.com/bao/uploaded/i4/2978398582/O1CN014WUc6t2DGbg0YdUcw_!!0-item_pic.jpg",
         "title":"【阿里健康官方】swisse男士复合维生素植物120片补充维生素成人",
         "sold": "1.2万",

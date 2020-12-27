@@ -50,11 +50,14 @@
 					markers: [{
 						latitude: 22.771745,
 						longitude: 113.267820,
-						callout: {
+						label:{
 							content: '小冰火人',
-							color: 'white',
+							color: '#fff',
+							padding:2,
 							borderRadius: 5,
 							bgColor: "#ff5500",
+						},
+						callout: {
 							display: 'ALWAYS',
 						},
 					}],
@@ -108,7 +111,6 @@
 					  "indicator":"number",
 					  "loop":true,
 				  });
-				
 			}
 		}
 	}
