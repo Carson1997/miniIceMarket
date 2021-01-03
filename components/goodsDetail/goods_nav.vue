@@ -63,7 +63,7 @@
 			share() {},
 			collectC() {
 				this.ifCollect = !this.ifCollect;
-				// this.$emit('collectClick')
+				this.$emit('collectClick',this.ifCollect)
 			}
 
 		}

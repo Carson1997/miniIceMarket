@@ -54,11 +54,13 @@
 				</view>
 			</view>
 
+			<image v-for="item in detail.swipers" :src="item" class="detailImg"  @click="seeImg(item)"></image>
+
 		</scroll-view>
 
 		<goods_nav class="goods_nav" :cart_num="buyNum" @addCartClick="addCart" @buyClick="buy" @collectClick="collect"></goods_nav>
 
-		<u-popup border-radius="10" v-model="downShow" length="50%" mode="bottom" closeable >
+		<u-popup border-radius="10" v-model="downShow" length="50%" mode="bottom" closeable>
 			<view class="downDiv">
 				<view class="d1">
 					<image :src="detail.img" class="ximg"></image>
@@ -77,7 +79,7 @@
 				<view class="info0">
 					<view>购买数量：</view>
 					<view>
-						<u-number-box v-model="buyNum" :max="detail.quantity|changeNum" size="30"></u-number-box>
+						<u-number-box v-model="showNum" :max="detail.quantity|changeNum" size="30"></u-number-box>
 					</view>
 				</view>
 
@@ -103,7 +105,7 @@
 			...mapState(["cart", "collection", "userInfo"]),
 			userId: function() {
 				return this.userInfo.userId;
-			}
+			},
 		},
 		filters: {
 			changeNum: function(data) {
@@ -143,11 +145,13 @@
 					shopScore: "",
 					logisticsScore: "",
 				},
-				buyNum: 0
+				buyNum: 0,
+				showNum: 1,
 			}
 		},
 		onLoad(option) {
 			this.detail.goods_id = option.goods_id;
+			this.checkCart()
 			this.getGoodsData();
 			uni.getSystemInfo({
 				success: data => {
@@ -197,6 +201,7 @@
 						this.detail.shopScore = detail.shopScore;
 						this.detail.logisticsScore = detail.logisticsScore;
 						this.detail.goods_params = detail.goods_params;
+						this.detail.shopId = detail.shopId;
 						callBack && callBack();
 					})
 				})
@@ -211,8 +216,8 @@
 					}
 				})[0];
 				this.detail.img = detail.img;
-				this.detail.swipers = detail.img.split(';');
-				// this.detail.swipers = detail.swipers.split(';');
+				// this.detail.swipers = detail.img.split(';');
+				this.detail.swipers = detail.swipers.split(';');
 				this.detail.title = detail.title;
 				this.detail.price = detail.price;
 				this.detail.orPrice = detail.orPrice;
@@ -225,9 +230,17 @@
 				this.detail.shopScore = detail.shopScore;
 				this.detail.logisticsScore = detail.logisticsScore;
 				this.detail.goods_params = detail.goods_params;
+				this.detail.shopId = detail.shopId;
 				callBack && callBack();
 				// #endif
 
+			},
+			checkCart() {
+				if (this.cart[this.detail.goods_id]) {
+					let num = this.cart[this.detail.goods_id].buyNum;
+					this.buyNum = num;
+					this.showNum = num;
+				}
 			},
 			seeImg(current) {
 				let urls = this.detail.swipers;
@@ -255,6 +268,7 @@
 				this.downShow = false;
 				if (this.btnType == "addCart") {
 					let goods_id = this.detail.goods_id;
+					this.buyNum = this.showNum;
 					let buyNum = this.buyNum;
 					let price = this.buyNum * this.detail.price;
 					let data;
@@ -263,7 +277,6 @@
 							this.cart[goods_id] = {
 								detail: this.detail,
 								buyNum: buyNum,
-								price: price,
 							};
 						} else {
 							this.cart[goods_id].buyNum = buyNum;
@@ -276,7 +289,7 @@
 						}
 						data = null;
 					}
-					
+
 					// #ifdef H5
 					this.addCartApi(data);
 					// #endif
@@ -289,17 +302,23 @@
 				let send = {
 					goods_id: this.detail.goods_id,
 					data: data,
-					userId: this.userId
+					userId: this.userId,
+					type: 'add'
 				};
 				this.$Request({
-					url: this.$Interface.addCarts,
+					url: this.$Interface.upadateCarts,
 					data: send
 				}).then(res => {
 					this.$CheckStatus(res)
 				})
 			},
-			collect() {
-
+			collect(ifCollect) {
+				let goods_id = this.detail.goods_id;
+				if (ifCollect) {
+					this.collection[goods_id] = this.detail;
+				} else {
+					delete this.collection[goods_id];
+				}
 			}
 		}
 	}
@@ -451,6 +470,10 @@
 			width: 100%;
 		}
 
+		.detailImg {
+			width: 750rpx;
+			height: 750rpx;
+		}
 
 		.downDiv {
 			padding: 10rpx;

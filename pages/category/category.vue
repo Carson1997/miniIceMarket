@@ -51,6 +51,13 @@
 		components:{
 			search
 		},
+		onPullDownRefresh() {
+			setTimeout(() => {
+				this.getCategoryData(() => {
+					uni.stopPullDownRefresh()
+				})
+			}, 1000)
+		},
 		onLoad() {
 			this.getCategoryData()
 		},
