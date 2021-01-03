@@ -7,7 +7,6 @@
 					<u-checkbox v-model="item.checked" @change="shopCheckboxChange(index)"><text class="shopName">{{item.shopName}}</text></u-checkbox>
 				</view>
 
-
 				<u-swipe-action v-for="(goods,gindex) in item.goods" :key="gindex" :options="options" :index="gindex" @click="deleteClick(index,gindex,goods.detail.goods_id)"
 				 @open="open(index,gindex)" :show="goods.deleteShow">
 
@@ -220,7 +219,6 @@
 							that.selectAll = false;
 						}
 					}
-
 
 					this.cart_arr = arr;
 				})

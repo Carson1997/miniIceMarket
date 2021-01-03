@@ -54,7 +54,7 @@
 				</view>
 			</view>
 
-			<image v-for="item in detail.swipers" :src="item" class="detailImg"  @click="seeImg(item)"></image>
+			<image v-for="item in detail.swipers" :key="item.id" :src="item" class="detailImg"  @click="seeImg(item)"></image>
 
 		</scroll-view>
 
