@@ -117,5 +117,13 @@
     },
     "uniStatistics" : {
         "enable" : false
+    },
+    "h5" : {
+        "title" : "小冰商城",
+        "domain" : "http://www.cic-valley.com",
+        "router" : {
+            "base" : "./",
+            "mode" : "hash"
+        }
     }
 }

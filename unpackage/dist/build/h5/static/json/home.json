@@ -1,0 +1,115 @@
+{
+  "data":{
+"swipers":[
+   {"img":"//api-hmugo-web.itheima.net/pyg/banner1.png","open_type":"navigate","goods_id":10001},
+   {"img":"//img11.360buyimg.com/cms/jfs/t1/119341/34/10866/298336/5ef302afEee15465b/a5bc880b53c068b3.jpg","goods_id":10002},
+   {"img":"//api-hmugo-web.itheima.net/pyg/banner3.png","open_type":"navigate","goods_id":10003}
+],
+    "nav":[
+      {
+        "title": "小冰超市",
+		"icon":"icon-ziyuan",
+		"url":"/pages/goods/goods"
+      },
+      {
+        "title": "商品详图",
+		"icon":"icon-tupian"
+      },
+      {
+        "title": "视频介绍",
+		"icon":"icon-shipin"
+      },
+      {
+       "title": "关于我们",
+       "icon":"icon-guanyuwomen",
+	    "url":"/pages/contact/contact"
+      }
+    ],
+    "goods_list":[
+      {
+      	"goods_id": 10001,
+      	"img": "//img.alicdn.com/bao/uploaded/i1/2794371653/O1CN01hukeMS1O57L6SC74K_!!2-item_pic.png",
+      	"title": "Swisse斯维诗vd钙娘娘钙澳洲钙+维生素D150片孕妇钙片中老年补钙",
+      	"sold": "1.3万",
+      	"price": "173.00",
+      	"quantity": "97218"
+      },
+      {
+      	"goods_id": 10002,
+      	"img": "//img.alicdn.com/bao/uploaded/i2/2794371653/O1CN01DemHsB1O57L9zD8k0_!!2-item_pic.png",
+      	"title": "澳洲Swisse斯维诗奶蓟草片120粒 加班熬夜解酒护常备旰片官方正品",
+      	"sold": "1.3万",
+      	"price": "194.00",
+      	"quantity": "94759"
+      },
+      {
+      	"goods_id": 10003,
+      	"img": "//img.alicdn.com/bao/uploaded/i1/2549841410/O1CN01iQH7gL1MHp64PVyGI_!!2549841410-0-sm.jpg",
+      	"title": "【直播推荐】澳洲Swisse斯维诗维生素c泡腾片天然vc高浓度60片",
+      	"sold": "1.2万",
+      	"price": "97.68",
+      	"quantity": "167876"
+      },
+      {
+      	"goods_id": 10004,
+      	"img": "//img.alicdn.com/bao/uploaded/i4/2978398582/O1CN014WUc6t2DGbg0YdUcw_!!0-item_pic.jpg",
+      	"title": "【阿里健康官方】swisse男士复合维生素植物120片补充维生素成人",
+      	"sold": "1.2万",
+      	"price": "188.10",
+      	"quantity": "15546"
+      },
+      {
+      	"goods_id": 10005,
+      	"img": "//img.alicdn.com/bao/uploaded/i3/2165616006/O1CN01rMiRsL1uEnPqsxT31_!!0-item_pic.jpg_250x250Q50s50.jpg",
+      	"title": "【Swisse护旰片 120粒奶蓟草肝脏解酒醒酒熬夜加班澳洲护干片水飞蓟",
+      	"sold": "1.4万",
+      	"price": "183.10",
+      	"quantity": "13546"
+      },
+      {
+      	"goods_id": 10006,
+      	"img": "//img.alicdn.com/bao/uploaded/i1/1879183449/O1CN01915Hl61bLgfnO4xkk_!!0-item_pic.jpg_250x250Q50s50.jpg",
+      	"title": "【  斯维诗swisse护澳洲旰片200粒肝奶蓟草片熬夜营养水飞蓟素保健品",
+      	"sold": "2.4万",
+      	"price": "234.00",
+      	"quantity": "13426"
+      },
+      {
+      	"goods_id": 10007,
+      	"img": "//img.alicdn.com/bao/uploaded/i4/2978398582/O1CN01kogCkU2DGbg70RriS_!!2978398582-0-sm.jpg_250x250Q50s50.jpg",
+      	"title": "【阿里健康官方】swisse男士复合维生素植物120片补充维生素成人",
+      	"sold": "1.4万",
+      	"price": "283.10",
+      	"quantity": "12546"
+      },
+      {
+      	"goods_id": 10008,
+      	"img": "//img.alicdn.com/bao/uploaded/i2/2978398582/O1CN019H4htH2DGbgGF0T2O_!!2978398582-0-sm.jpg_250x250Q50s50.jpg",
+      	"title": "swisse澳洲进口钙片维生素DVD150粒补钙易吸收中老年成人孕妇钙片",
+      	"sold": "0.4万",
+      	"price": "134.00",
+      	"quantity": "23426"
+      },
+      {
+      	"goods_id": 10009,
+      	"img": "//img.alicdn.com/bao/uploaded/i3/2549841410/O1CN01h8bwPX1MHp69N2xLu_!!2549841410-0-sm.jpg_250x250Q50s50.jpg",
+      	"title": "进口超市澳洲Swisse 斯维诗奶蓟草片熬夜优选保健品120片*2",
+      	"sold": "1.4万",
+      	"price": "334.00",
+      	"quantity": "23426"
+      },
+      {
+      	"goods_id": 100010,
+      	"img": "//img.alicdn.com/bao/uploaded/i2/2658963920/O1CN01nrSO9h1epPDdqQpA0_!!0-item_pic.jpg_250x250Q50s50.jpg",
+      	"title": "Swisse斯维诗女士多种复合维生素120片舒缓压力平衡营养澳洲进口",
+      	"sold": "1.4万",
+      	"price": "243.00",
+      	"quantity": "23426"
+      }
+    ]
+  },
+  "status": "0",
+  "info": "",
+  "url": "",
+  "urlType":""
+}

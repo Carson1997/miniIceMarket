@@ -1,7 +1,9 @@
+let Interfac;
+let api;
 
 // #ifdef MP-WEIXIN
-let api = '/static/json/'
-export let Interfac =  {
+api = '/static/json/';
+Interfac =  {
 	home: api+ 'home.json',
 	goods:api+'goods.json',
 	contact:api+'contact.json',
@@ -12,10 +14,8 @@ export let Interfac =  {
 // #endif
 
 // #ifdef H5
-// let host =  "http://www.cic-valley.com/backstage";
-let head = process.env.NODE_ENV === "development" ? "http://localhost" : window.location.host;
-let api = head + '/miniMarketData';
-export let Interface = {
+api = process.env.NODE_ENV === "development" ? "http://localhost/miniMarketData" : "http://"+window.location.host+"/backstage/miniMarketData";
+Interface = {
 	home: api+ '/index/home/home',
 	goods:api+'/index/home/goods',
 	contact:api+'/index/home/contact',
@@ -26,9 +26,8 @@ export let Interface = {
 // #endif
 
 // #ifdef APP-PLUS
-let head =  "http://www.cic-valley.com/backstage";
-let api = head + '/miniMarketData';
-export let Interface = {
+api =  "http://www.cic-valley.com/backstage" + '/miniMarketData';
+Interface = {
 	home: api+ '/index/home/home',
 	goods:api+'/index/home/goods',
 	contact:api+'/index/home/contact',
@@ -38,3 +37,4 @@ export let Interface = {
 }
 // #endif
 
+export let Interface = Interface;
