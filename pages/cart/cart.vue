@@ -36,7 +36,7 @@
 			</view>
 		</view>
 
-		<u-empty mode="car" v-if="cart_arr.length == 0"></u-empty>
+		<u-empty mode="car" v-if="cart_arr.length == 0" class="u-empty"></u-empty>
 
 		<view class="bottom">
 			<view>
@@ -144,7 +144,7 @@
 				}
 				this.cart_arr = Object.values(new_arr);
 			},
-			deleteClick(shopIndex, goodsIndex,goods_id) {
+			deleteClick(shopIndex, goodsIndex, goods_id) {
 				let arr = JSON.parse(JSON.stringify(this.cart_arr));
 				arr[shopIndex].goods.splice(goodsIndex, 1);
 				if (arr[shopIndex].goods.length == 0) {
@@ -203,9 +203,10 @@
 					} else {
 						arr[shopIndex].checked = false;
 					}
-					
+
 					let that = this;
 					checkedAll();
+
 					function checkedAll() {
 						let ifAllShop = 0;
 						arr.map((shop) => {
@@ -242,12 +243,12 @@
 					url: '/pages/goodsDetail/goodsDetail?goods_id=' + id
 				})
 			},
-			
+
 			upadateCarts() {
 				let send = {
 					data: this.cart,
 					userId: this.userId,
-					type:'update',
+					type: 'update',
 				};
 				this.$Request({
 					url: this.$Interface.upadateCarts,
@@ -262,6 +263,14 @@
 
 <style scoped lang="scss">
 	.cart {
+		.u-empty {
+			position: absolute;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
 
 		.goodsPrice {
 			color: red;
@@ -272,15 +281,15 @@
 			background-color: white;
 			position: fixed;
 			width: 100%;
-			
+
 			/* #ifdef H5 */
 			bottom: 100rpx;
 			/* #endif */
-			
+
 			/* #ifdef MP-WEIXIN */
 			bottom: 0rpx;
 			/* #endif */
-			
+
 			border-top: #D5D5D5 2rpx solid;
 			padding: 0 10rpx;
 			display: flex;
