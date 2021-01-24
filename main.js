@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import store  from "./store"
-import {Request,Interface,CheckStatus} from '@/static/js/public/config.js'
+import {Request,CheckStatus} from '@/static/js/public/config.js'
+import {Interface} from '@/static/js/public/api.js'
 import uView from "uview-ui";
 Vue.use(uView);
 

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		userInfo: {
-			userId:12332,
+			// userId:213
 		},
 		cart: {
 			//   "10001": {
@@ -90,6 +90,9 @@ export default new Vuex.Store({
 		},
 		addCollcet(id){
 			state.cart = [...state.collect, id]
+		},
+		getUserInfo(state,data){
+			state.userInfo = data
 		}
 	},
 	actions: {},

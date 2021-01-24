@@ -77,7 +77,7 @@
 			},
 
 			async getHomeData(callBack) {
-				// #ifdef H5
+				// #ifdef H5 || APP-PLUS
 				this.$Request({
 					url: this.$Interface.home,
 				}).then(res => {

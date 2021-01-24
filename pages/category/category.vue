@@ -65,7 +65,7 @@
 			this.getMenuItemTop()
 		},
 		methods: {
-			async getCategoryData(callBack){				// #ifdef H5				this.$Request({					url: this.$Interface.category,				}).then(res => {					this.$CheckStatus(res, () => {						let data = res.data;						this.tabbar = data.category;						callBack && callBack()					})				})				// #endif								// #ifdef MP-WEIXIN				let res = require('@/static/json/category.json');				let data = res.data;				this.tabbar = data.category;				callBack && callBack()				// #endif			},
+			async getCategoryData(callBack){				// #ifdef H5 || APP-PLUS				this.$Request({					url: this.$Interface.category,				}).then(res => {					this.$CheckStatus(res, () => {						let data = res.data;						this.tabbar = data.category;						callBack && callBack()					})				})				// #endif								// #ifdef MP-WEIXIN				let res = require('@/static/json/category.json');				let data = res.data;				this.tabbar = data.category;				callBack && callBack()				// #endif			},
 			
 			clickItem(name){
 				uni.navigateTo({

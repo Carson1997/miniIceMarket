@@ -175,7 +175,7 @@
 				let send = {
 					goods_id: this.detail.goods_id
 				};
-				// #ifdef H5
+				// #ifdef H5 || APP-PLUS
 				this.$Request({
 					url: this.$Interface.goodsDetail,
 					data: send

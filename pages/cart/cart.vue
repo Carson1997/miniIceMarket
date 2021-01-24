@@ -38,6 +38,8 @@
 
 		<u-empty mode="car" v-if="cart_arr.length == 0" class="u-empty"></u-empty>
 
+         <view class="kong"></view>
+
 		<view class="bottom">
 			<view>
 				<u-checkbox v-model="selectAll" @change="allCheckboxChange()">全选</u-checkbox>
@@ -110,8 +112,8 @@
 		},
 		onLoad() {},
 		onHide() {
-			// #ifdef H5
-			this.upadateCarts();
+			// #ifdef H5 || APP-PLUS
+			// this.upadateCarts();
 			// #endif
 		},
 		onShow() {
@@ -143,6 +145,13 @@
 					new_arr[shopId].goods.push(d)
 				}
 				this.cart_arr = Object.values(new_arr);
+				
+				// let a = this.cart_arr[0];
+				// for(let i  = 0;i< 10; i++){
+				// 	this.cart_arr.push(a)
+				// }
+				// console.log(this.cart_arr)
+				
 			},
 			deleteClick(shopIndex, goodsIndex, goods_id) {
 				let arr = JSON.parse(JSON.stringify(this.cart_arr));
@@ -262,7 +271,11 @@
 </script>
 
 <style scoped lang="scss">
-	.cart {
+	.cart {		
+		.kong{
+			height: 90rpx;
+		}
+		
 		.u-empty {
 			position: absolute;
 			margin: auto;
@@ -286,7 +299,7 @@
 			bottom: 100rpx;
 			/* #endif */
 
-			/* #ifdef MP-WEIXIN */
+			/* #ifdef MP-WEIXIN || APP-PLUS */
 			bottom: 0rpx;
 			/* #endif */
 
@@ -306,7 +319,7 @@
 			margin: 20rpx 10rpx;
 			border-radius: 20rpx;
 			background-color: white;
-			margin-bottom: 110rpx;
+			// margin-bottom: 110rpx;
 
 			.list {
 				padding: 10rpx;

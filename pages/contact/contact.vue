@@ -69,7 +69,7 @@
 		},
 		methods: {
 			async getContactData(callBack) {
-				// #ifdef H5
+				// #ifdef H5 || APP-PLUS
 				this.$Request({
 					url: this.$Interface.contact,
 				}).then(res => {

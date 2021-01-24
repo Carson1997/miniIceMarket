@@ -1,0 +1,33 @@
+{
+	"data": {
+		"swipers": [{
+				"img": "http://183.239.34.128:808/miniIceMarket/img/contact/swiper1.jpg",
+				"id": 1
+			},
+			{
+				"img": "http://183.239.34.128:808/miniIceMarket/img/contact/swiper2.jpg",
+				"id": 2
+			},
+			{
+				"img": "http://183.239.34.128:808/miniIceMarket/img/contact/swiper3.jpg",
+				"id": 3
+			},
+			{
+				"img": "http://183.239.34.128:808/miniIceMarket/img/contact/swiper4.jpg",
+				"id": 4
+			},
+			{
+				"img": "http://183.239.34.128:808/miniIceMarket/img/contact/swiper5.jpg",
+				"id": 5
+			}
+		],
+		"introduce": "小冰火人主要业务为电商零售、大数据营销、内容营销、客服外包，现拥有一支专业和系统化的电商团队，总部位于广东顺德，办公面积11000平方，在广州、杭州、南京、北京设立了办事处。目前小冰火人已与`博世`、`日立`、`铁三角`、`swisse`、`ATEX`、`伊利`、`奥克斯`、`海信`、`美菱`、`康佳`等国内外超过20个品牌进行长期深度合作，涵盖天猫、京东、苏宁易购、唯品会、拼多多、小红书等国内电商全平台。",
+		"phone": "0757-28877896",
+		"address": "广东省佛山市顺德区容桂街道容桂大道北129号",
+		"email": "hr@miniice.com"
+	},
+	"status": "0",
+	"info": "",
+	"url": "",
+	"urlType": ""
+}

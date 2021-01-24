@@ -55,7 +55,7 @@
 					pageIndex: this.pageIndex
 				};
 
-				// #ifdef H5
+				// #ifdef H5 || APP-PLUS
 				this.$Request({
 					url: this.$Interface.goods,
 					data: send
